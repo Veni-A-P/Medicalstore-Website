@@ -1,0 +1,36 @@
+{% extends 'base_page.html' %}
+
+{% block title %}Search Result:{% endblock title%}
+
+{% block content%}
+
+<div class="container my-3">
+    <h2>Search Results:</h2>
+
+    <table class="table my-5">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Medicine Name</th>
+            <th scope="col">Medicine Type</th>
+            <th scope="col">Price</th>
+            <th scope="col">Manufacturing Date</th>
+            <th scope="col">Expiry Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for med in medicine %}
+    <tr>
+    <th scope="row">{{med.id}}</th>
+    <td>{{med.Name}}</td>
+    <td>{{med.Type}}</td>
+    <td>{{med.Price}}</td>
+    <td>{{med.Manufacturing_date}}</td>
+    <td>{{med.Expiry_date}}</td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+    <a href="{% url 'list' %}" class="btn btn-secondary">Back</a>
+    
+{%endblock content %}  

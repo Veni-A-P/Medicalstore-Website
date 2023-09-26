@@ -1,0 +1,65 @@
+{% extends 'base_page.html'%}
+
+{% block content %}
+
+<div class="container">
+    <div class ="row">
+        <div class="col col-8 offset-2">
+            <h2 class=" text-center mt-3 mb-3">Medical Details</h2>
+        </div>
+    </div>
+</div>
+<div class="row ml-5 mr-5 ">
+    <div class="col-md-6">
+        <a href={% url "add" %} class="btn btn-warning btn-sm"> Add New</a>
+    </div>
+    <div class="col-md-6">
+        <div class="d-flex justify-content-end">
+            <form  class="form-inline" action="/search" method="get" >
+                {% csrf_token %}
+                <div class="input-group">
+                <input type="text" name="query" placeholder="Search for Medicines" id ="query">
+                <div class="input-group-append">
+                <button type="submit">Search</button>
+                </div>
+            </div>
+            </form>
+        </div> 
+    </div>
+</div>
+
+
+  <table class="table my-5">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Medicine Name</th>
+        <th scope="col">Medicine Type</th>
+        <th scope="col">Price</th>
+        <th scope="col">Manufacturing Date</th>
+        <th scope="col">Expiry Date</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for med in medicine %} 
+
+    <tr>
+    <th scope="row">{{med.id}}</th>
+    <td>{{med.Name}}</td>
+    <td>{{med.Type}}</td>
+    <td>{{med.Price}}</td>
+    <td>{{med.Manufacturing_date}}</td>
+    <td   {% if med.Expiry_date < today %} 
+          style="color:red;"
+          {% else %}
+          style="color:green;"
+          {% endif %}
+          >{{med.Expiry_date}}</td>
+    <td>
+      <a href= "update/{{med.id}}" class="btn btn-warning btn-sm"> Edit </a>
+      <a href="delete/{{med.id}}" class="btn btn-danger btn-sm">  Delete </a>
+    </td>
+    {% endfor %}
+  
+{%endblock content %}        

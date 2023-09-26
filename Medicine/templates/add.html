@@ -1,0 +1,25 @@
+{% extends 'base_page.html' %}
+
+{% block content %}
+
+
+  <div class='container'>
+    <div class='row'>
+        <div class="col col-8 offset-2">
+         
+        <h2 class="text-center mt-3 mb-3 ">Add Medicine</h2>
+
+    <form method="POST" >
+      {% csrf_token %}
+      {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Add </button>
+        <a href="{% url 'list' %}" class='btn btn-info'>Show Details</a>
+    </form>
+    </div>
+    </div>
+    </div>    
+
+</div>
+
+{% endblock content %}     
+
